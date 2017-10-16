@@ -1,13 +1,12 @@
 package edu.msudenver.cs3250.group6.msubanner.controllers;
 
+import edu.msudenver.cs3250.group6.msubanner.entities.Course;
 import edu.msudenver.cs3250.group6.msubanner.entities.Section;
 import edu.msudenver.cs3250.group6.msubanner.services.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,11 +41,13 @@ public class SectionController {
 
     /**
      * Adds a section.
-     * @param section the section to be added
-     */
+     * @param course The course the section belongs to
+     * */
     @RequestMapping(method = RequestMethod.POST, value = "/sections/addsection")
-    public void addSection(@RequestBody final Section section) {
+    public ResponseEntity<Section> addSection(@RequestParam final Course course) {
+        Section section = new Section(course);
         sectionService.addSection(section);
+        return new ResponseEntity<Section>(section, HttpStatus.CREATED);
     }
 
     /**

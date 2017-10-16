@@ -53,6 +53,15 @@ public class Section {
         }
     }
 
+    //overloaded to allow creation without professor
+    public Section(final Course course) throws IllegalArgumentException {
+        if (course != null) {
+            myCourse = course;
+        }
+        else
+            throw new IllegalArgumentException("Course cannot be null");
+    }
+
     /**
      * Returns the course id number.
      * @return id of this course

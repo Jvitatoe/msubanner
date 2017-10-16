@@ -2,6 +2,7 @@ package edu.msudenver.cs3250.group6.msubanner.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /*
  *  The purpose here is to get a mapping to the index.html in templates
@@ -55,5 +56,22 @@ class HomeController {
     }
 
     @RequestMapping("/courseshow")
-    String courseshow() { return "courseshow"; }
+    String courseshow() {
+        return "courseshow";
+    }
+
+    @RequestMapping("sections/addsection")
+    String addSectionForn() {
+        return "addsectionform";
+    }
+
+    @RequestMapping("/buildings/addbuilding")
+    String addBuildingForm() {
+        return "addbuildingform";
+    }
+
+    @RequestMapping("/rooms/addroom")
+    String addRoomForm() {
+        return "addroomform";
+    }
 }

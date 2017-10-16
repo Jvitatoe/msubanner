@@ -2,6 +2,7 @@ package edu.msudenver.cs3250.group6.msubanner.services;
 
 import edu.msudenver.cs3250.group6.msubanner.entities.Room;
 import edu.msudenver.cs3250.group6.msubanner.repositories.RoomRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Service
 public class RoomService {
-
+    @Autowired
     private RoomRepository roomRepository;
 
     /**

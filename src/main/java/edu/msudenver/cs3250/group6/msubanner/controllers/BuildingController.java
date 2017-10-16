@@ -4,11 +4,9 @@ package edu.msudenver.cs3250.group6.msubanner.controllers;
 import edu.msudenver.cs3250.group6.msubanner.services.BuildingService;
 import edu.msudenver.cs3250.group6.msubanner.entities.Building;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,13 +38,12 @@ public class BuildingController {
 
     /**
      * Adds a building.
-     * @param building the building to be added
      */
     @RequestMapping(method = RequestMethod.POST, value = "/buildings/addbuilding")
-    // take request body, turn into Building instance and pass to addBuilding()
-    public void addBuilding(@RequestBody final Building building) {
-        // POST body should contain object being sent
+    public ResponseEntity<Building> addBuilding(@RequestParam final String buildingName) {
+        Building building = new Building(buildingName);
         buildingService.addBuilding(building);
+        return new ResponseEntity<Building>(building, HttpStatus.CREATED);
     }
 
     /**

@@ -2,8 +2,12 @@ package edu.msudenver.cs3250.group6.msubanner.controllers;
 
 import edu.msudenver.cs3250.group6.msubanner.ClassLevel;
 import edu.msudenver.cs3250.group6.msubanner.entities.Course;
+import edu.msudenver.cs3250.group6.msubanner.repositories.CourseRepository;
 import edu.msudenver.cs3250.group6.msubanner.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,12 +44,12 @@ public class CourseController {
 
     /**
      * Adds a course.
-     * @param course the course to be added
      */
     @RequestMapping(method = RequestMethod.POST, value = "/courses/addcourse")
-    public void addCourse(@RequestParam final String courseTitle, String courseDescription, int courseCredits, String courseLearningObjectives, ClassLevel coursePrereqs) {
+    public ResponseEntity<Course> addCourse(@RequestParam final String courseTitle, String courseDescription, int courseCredits, String courseLearningObjectives, ClassLevel coursePrereqs) {
         Course course = new Course(courseTitle, courseDescription, courseCredits, courseLearningObjectives, coursePrereqs);
         courseService.addCourse(course);
+        return new ResponseEntity<Course>(course, HttpStatus.CREATED);
     }
 
     /**

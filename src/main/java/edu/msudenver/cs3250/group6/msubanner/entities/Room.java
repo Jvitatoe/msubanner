@@ -74,8 +74,8 @@ public class Room {
     }
 
     /**
-     * Sets the name of the building.
-     * @param roomNumber New roomNumber of the building.
+     * Sets the name of the room.
+     * @param roomNumber New roomNumber of the room.
      * @throws IllegalArgumentException if new roomNumber is blank
      */
     public void setRoomNumber(final int roomNumber) throws IllegalArgumentException {
@@ -87,15 +87,21 @@ public class Room {
     }
 
     /**
-     * Returns the name of the building.
-     * @return Name of the building
+     * Returns the name of the room.
+     * @return Name of the room
      */
     public int getRoomNumber() {
         return myRoomNumber;
     }
 
     /**
-     * toString method for Building.
+     * Returns the capacity of the room.
+     * @return Capacity of the room
+     */
+    public int getRoomCapacity() { return myCapacity; }
+
+    /**
+     * toString method for Room.
      */
     @Override
     public String toString() {

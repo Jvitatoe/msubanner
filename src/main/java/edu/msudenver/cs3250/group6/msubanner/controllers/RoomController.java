@@ -3,6 +3,8 @@ package edu.msudenver.cs3250.group6.msubanner.controllers;
 import edu.msudenver.cs3250.group6.msubanner.entities.Room;
 import edu.msudenver.cs3250.group6.msubanner.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +27,6 @@ public class RoomController {
      * @return the list of all rooms
      */
     @RequestMapping("/rooms")
-
     public List<Room> getAllRooms() {
 
         return roomService.getAllRooms();
@@ -47,9 +48,10 @@ public class RoomController {
      * @param room the room to be added
      */
     @RequestMapping(method = RequestMethod.POST, value = "/rooms/addroom")
-    public void addRoom(@RequestParam final int roomNumber, int roomCapacity) {
+    public ResponseEntity<Room> addRoom(@RequestParam final int roomNumber, int roomCapacity) {
         Room room = new Room(roomNumber, roomCapacity);
         roomService.addRoom(room);
+        return new ResponseEntity<Room>(room, HttpStatus.CREATED);
     }
 
     /**

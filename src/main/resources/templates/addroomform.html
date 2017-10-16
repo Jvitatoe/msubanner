@@ -1,0 +1,11 @@
+{{#layout}}
+<div class="container" xmlns:th="http://www.w3.org/1999/xhtml">
+    <h1>Room Input Form (Currently Working)</h1>
+    <form action="#" th:action="@{/rooms/addroom}" th:object="${room}" method="post">
+        <p>Room Number: <input type="number" name="roomNumber" th:field="*{roomNumber}" /></p>
+        <p>Room Capacity: <input type="number" name="roomCapacity" th:field="*{roomCapacity}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</div>
+{{/layout}}
+{{>layout}}
